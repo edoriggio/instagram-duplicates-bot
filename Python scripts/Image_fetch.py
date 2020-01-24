@@ -59,7 +59,7 @@ def login_to_instagram():
 
 def register_new_user():
     username = input('Write down your Instagram username:\n>> ')
-    password = (input('Write down your instagram password:\n>> '))
+    password = input('Write down your instagram password:\n>> ')
 
     read_write_to_json(json_file, {'username': username, 'password': password}, 'w')
 
