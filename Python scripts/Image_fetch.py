@@ -64,8 +64,8 @@ def login_to_instagram():
     driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[3]/a').click()
     print('About to take screenshot')
     sleep(3)
-    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-    driver.set_window_size(S('Width'),S('Height'))
+    size = lambda x: driver.execute_script('return document.body.parentNode.scroll' + x)
+    driver.set_window_size(size('Width'), size('Height'))
     driver.find_element_by_tag_name('body').screenshot('test.png')
     print('Done, screenshot saved')
 
