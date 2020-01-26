@@ -12,22 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
 import json
-import base64
 from time import sleep
 # Selenium modules
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+# OpenCV module
+import cv2
 
 # Selenium driver init
 op = Options()
 op.headless = True
-# driver = webdriver.Firefox(options = op)
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(options = op)
+# driver = webdriver.Firefox()
 driver.implicitly_wait(20)
 
 # Variables
+json_file = 'Json/credentials.json'
 insta_url = 'https://www.instagram.com/'
 
 # Function for reading and writing data froma a JSON file
@@ -49,13 +50,26 @@ def login_to_instagram():
     username = json_data['username']
     password = json_data['password']
 
+    driver.maximize_window()
     driver.get(insta_url)
     driver.find_element_by_xpath("//a[contains(text(), 'Log in')]").click()
+    sleep(3)
+    print('Typing username and password')
     driver.find_element_by_xpath("//input[@name=\"username\"]").send_keys(username)
     driver.find_element_by_xpath("//input[@name=\"password\"]").send_keys(password)
     driver.find_element_by_xpath("//button[@type='submit']").click()
-    sleep(4)
+    sleep(3)
+    print('Logged in')
     driver.find_element_by_xpath("//button[contains(text(), 'Not Now')]").click()
+    driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[3]/a').click()
+    print('About to take screenshot')
+    sleep(3)
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+    driver.set_window_size(S('Width'),S('Height'))
+    driver.find_element_by_tag_name('body').screenshot('test.png')
+    print('Done, screenshot saved')
+
+    driver.close()
 
 def register_new_user():
     username = input('Write down your Instagram username:\n>> ')
@@ -65,7 +79,9 @@ def register_new_user():
 
 def check_if_registered():
     with open(json_file, 'r') as file_to_read:
-        if json.load(file_to_read) == {}:
+        data = json.load(file_to_read)
+
+        if data['username'] == '' or data['password'] == '':
             return False
         else:
             return True
