@@ -11,3 +11,42 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+import cv2
+from PIL import Image, ImageDraw
+
+def compare_images(template: str, image: str = 'Assets/screenshot.png'):
+    new_image = Image.open(template)
+    resized = new_image.resize((293, 293))
+    resized.save(template)
+
+    im = cv2.imread(image)
+    tmp = cv2.imread(template)
+
+    image_size = im.shape[:2]
+    template_size = tmp.shape[:2]
+
+    result = cv2.matchTemplate(im, tmp, cv2.TM_SQDIFF)
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+
+    confidence = (9999999999 - min_val) / 100000000
+    altconfidence = 100 - ((min_val / max_val)*100)
+
+    topleftx = min_loc[0]
+    toplefty = min_loc[1]
+    sizex = template_size[1]
+    sizey = template_size[0]
+
+    if (altconfidence > 99) or ((confidence > 97) and (altconfidence > 93)) or ((confidence > 95.7) and (altconfidence > 96.3)):
+        marked = Image.open(image)
+        draw = ImageDraw.Draw(marked)
+        draw.line(((topleftx, toplefty), (topleftx + sizex, toplefty)), fill="red", width=2)
+        draw.line(((topleftx + sizex, toplefty), (topleftx + sizex, toplefty + sizey)), fill="red", width=2)
+        draw.line(((topleftx + sizex, toplefty + sizey), (topleftx, toplefty + sizey)), fill="red", width=2)
+        draw.line(((topleftx, toplefty + sizey), (topleftx, toplefty)), fill="red", width=2)
+        marked.save('Assets/screen_marked.png', "PNG")
+        print('Image found')
+    else:
+        print ('The image was not found, the confidence is ' + str(confidence) + ' ' + str(altconfidence))
+
+compare_images('Assets/test_image.png')

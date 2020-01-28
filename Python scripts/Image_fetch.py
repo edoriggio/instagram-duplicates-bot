@@ -19,6 +19,8 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 # OpenCV module
 import cv2
+# Pillow module
+from PIL import Image
 
 # Selenium driver init
 op = Options()
@@ -53,20 +55,26 @@ def login_to_instagram():
     driver.maximize_window()
     driver.get(insta_url)
     driver.find_element_by_xpath("//a[contains(text(), 'Log in')]").click()
+    print('instagram.com loaded')
+    
     sleep(3)
     print('Typing username and password')
     driver.find_element_by_xpath("//input[@name=\"username\"]").send_keys(username)
     driver.find_element_by_xpath("//input[@name=\"password\"]").send_keys(password)
     driver.find_element_by_xpath("//button[@type='submit']").click()
+
     sleep(3)
-    print('Logged in')
     driver.find_element_by_xpath("//button[contains(text(), 'Not Now')]").click()
+    print('Logged in')
+
+    sleep(3)
     driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[3]/a').click()
     print('About to take screenshot')
-    sleep(3)
+
+    sleep(5)
     size = lambda x: driver.execute_script('return document.body.parentNode.scroll' + x)
     driver.set_window_size(size('Width'), size('Height'))
-    driver.find_element_by_tag_name('body').screenshot('test.png')
+    driver.find_element_by_tag_name('body').screenshot('Assets/screenshot.png')
     print('Done, screenshot saved')
 
     driver.close()
