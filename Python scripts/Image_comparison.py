@@ -16,9 +16,10 @@ import cv2
 from PIL import Image, ImageDraw
 
 def compare_images(template: str, image: str = 'Assets/screenshot.png'):
-    new_image = Image.open(template)
-    resized = new_image.resize((293, 293))
-    resized.save(template)
+    if Image.open(template).size == (293, 293):
+        new_image = Image.open(template)
+        resized = new_image.resize((293, 293))
+        resized.save(template)
 
     im = cv2.imread(image)
     tmp = cv2.imread(template)
@@ -48,5 +49,3 @@ def compare_images(template: str, image: str = 'Assets/screenshot.png'):
         print('Image found')
     else:
         print ('The image was not found, the confidence is ' + str(confidence) + ' ' + str(altconfidence))
-
-compare_images('Assets/test_image.png')
