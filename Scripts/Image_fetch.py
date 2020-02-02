@@ -40,6 +40,18 @@ insta_url = 'https://www.instagram.com/'
 
 # Function for reading and writing data froma a JSON file
 def read_write_to_json(file: str, data: dict = {}, readwrite: str = 'r'):
+    '''
+    Given a file path, some data and a sigle character string, return the
+    contents of the given json file. The readwrite string is used to let
+    the function know whether it should read (r) a file or write (w) to it
+
+    file -- string
+    data -- dictionary
+    readwrite -- string
+
+    return -- dictionary
+    '''
+
     if readwrite == 'r':
         with open(file, 'r') as file_to_read:
             return json.load(file_to_read)
@@ -50,9 +62,14 @@ def read_write_to_json(file: str, data: dict = {}, readwrite: str = 'r'):
         raise Exception("readwrite must be either 'r' or 'w'")
 
 def login_to_instagram():
+    '''
+    It performs a login into instagram.com and takes a screenshot of the
+    user's profile page. It saves the image in a .png format in the Assets
+    folder
+    '''
 
-    if not check_if_registered():
-        register_new_user()
+    print('\nInitiating login into Instagram page\
+        \n------------------------------------')
 
     json_data = read_write_to_json(json_file)
     username = json_data['username']
@@ -86,12 +103,24 @@ def login_to_instagram():
     driver.close()
 
 def register_new_user():
+    '''
+    It makes the user input their Instagram username and password, in order
+    to login into the platform later on. The data is stored in a json file
+    '''
+
     username = input('Write down your Instagram username:\n>> ')
     password = input('Write down your instagram password:\n>> ')
 
     read_write_to_json(json_file, {'username': username, 'password': password}, 'w')
 
 def check_if_registered():
+    '''
+    It checks if the user credentials are stored in a default json file, it returns
+    True if the user credentials are saved, false otherwise
+
+    return -- boolean
+    '''
+
     with open(json_file, 'r') as file_to_read:
         data = json.load(file_to_read)
 

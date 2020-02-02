@@ -16,6 +16,20 @@ import cv2
 from PIL import Image, ImageDraw
 
 def compare_images(template: str, image: str = 'Assets/screenshot.png'):
+    '''
+    Given a template image and a profile page screenshot, the function checks
+    whether the template is contained inside the screenshot. It also saves the
+    marked image in the Assests folder as a png file
+
+    template -- string
+    image -- string
+    '''
+
+    print('\nInitiating image comparison\
+        \n---------------------------')
+
+    print('Resizing image')
+
     if Image.open(template).size == (293, 293):
         new_image = Image.open(template)
         resized = new_image.resize((293, 293))
@@ -38,6 +52,8 @@ def compare_images(template: str, image: str = 'Assets/screenshot.png'):
     sizex = template_size[1]
     sizey = template_size[0]
 
+    print('Comparing the images')
+
     if (altconfidence > 99) or ((confidence > 97) and (altconfidence > 93)) or ((confidence > 95.7) and (altconfidence > 96.3)):
         marked = Image.open(image)
         draw = ImageDraw.Draw(marked)
@@ -46,6 +62,6 @@ def compare_images(template: str, image: str = 'Assets/screenshot.png'):
         draw.line(((topleftx + sizex, toplefty + sizey), (topleftx, toplefty + sizey)), fill="red", width=2)
         draw.line(((topleftx, toplefty + sizey), (topleftx, toplefty)), fill="red", width=2)
         marked.save('Assets/screen_marked.png', "PNG")
-        print('Image found')
+        print('Potential duplicate was found, marked file saved in Assests/screen_marked.png\n')
     else:
-        print ('The image was not found, the confidence is ' + str(confidence) + ' ' + str(altconfidence))
+        print ('No potential duplicates found\n')
