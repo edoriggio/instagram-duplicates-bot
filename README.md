@@ -3,7 +3,7 @@
 ## Short description
 This script logs into a user's Instagram account and checks if, given an image, this is already present in the user's profile page (i.e. the photo is a duplicate).
 
-## Python version - 3.6.9
+**Python version - 3.6.9**
 
 ## Packages used
 - opencv-python
