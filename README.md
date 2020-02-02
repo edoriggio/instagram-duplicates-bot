@@ -40,6 +40,23 @@ driver = webdriver.Firefox(options = op)  #comment it out
 3. The script will then prompt the user to input the absolute path of the image they want to check. This can be done in two ways, either by writing down the absolute path of the file, or by dragging and dropping the desired file into the Terminal window
 4. An image recognition script will begin to run and it will check if the given image is inside the screenshot that was previously taken. The script will then save a .png in the [Assets][3] folder containing the screenshot taken earlier and a red square if the image was found.
 
+## Example
+
+Given the screenshot taken by selenium
+
+![Screenshot][4]
+
+And the template
+
+![Template][5]
+
+The script was able to find the duplicate and saved this marked file
+
+![Marked file][6]
+
 [1]: https://github.com/mozilla/geckodriver/releases
 [2]: Scripts/Image_fetch.py
 [3]: Assets
+[4]: Test/screenshot.png
+[5]: Test/test.png
+[6]: Test/screen_marked.png
