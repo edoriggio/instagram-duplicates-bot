@@ -25,8 +25,13 @@ from PIL import Image
 # Selenium driver init
 op = Options()
 op.headless = True
+
+# Comment the next line and uncomment the following if you have
+# authentication issues. Comment the line after the next to 
+# make the script run properly after you inserted your 2FA code
 driver = webdriver.Firefox(options = op)
 # driver = webdriver.Firefox()
+
 driver.implicitly_wait(20)
 
 # Variables
@@ -45,6 +50,7 @@ def read_write_to_json(file: str, data: dict = {}, readwrite: str = 'r'):
         raise Exception("readwrite must be either 'r' or 'w'")
 
 def login_to_instagram():
+
     if not check_if_registered():
         register_new_user()
 
@@ -93,5 +99,3 @@ def check_if_registered():
             return False
         else:
             return True
-
-login_to_instagram()
