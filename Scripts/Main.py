@@ -19,7 +19,7 @@ import Image_fetch
 
 def compare_images_loop():
     '''
-    It checks wheter the file inserted is valid, and returns True if
+    It checks whether the file inserted is valid, and returns True if
     it is valid, False otherwise
 
     return -- boolean
