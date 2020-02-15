@@ -50,7 +50,7 @@ And the template
 
 ![Template][5]
 
-The script was able to find the duplicate and saved this marked file
+The script was able to find the duplicate and save this marked file
 
 ![Marked file][6]
 
