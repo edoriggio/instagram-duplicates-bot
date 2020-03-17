@@ -53,7 +53,7 @@ def compare_images(template: str, image: str = 'Assets/screenshot.png'):
 
     print('Comparing the images')
 
-    if (altconfidence > 99) or ((confidence > 97) and (altconfidence > 93))\ or ((confidence > 95.7) and (altconfidence > 96.3)):
+    if (altconfidence > 99) or ((confidence > 97) and (altconfidence > 93)) or ((confidence > 95.7) and (altconfidence > 96.3)):
         marked = Image.open(image)
         draw = ImageDraw.Draw(marked)
         draw.line(((topleftx, toplefty), (topleftx + sizex, toplefty)), fill="red", width=2)
