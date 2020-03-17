@@ -16,14 +16,14 @@ import cv2
 from PIL import Image, ImageDraw
 
 def compare_images(template: str, image: str = 'Assets/screenshot.png'):
-    '''
+    """
     Given a template image and a profile page screenshot, the function checks
     whether the template is contained inside the screenshot. It also saves the
     marked image in the Assests folder as a png file
 
     template -- string
     image -- string
-    '''
+    """
 
     print('\nInitiating image comparison\
         \n---------------------------')
@@ -63,4 +63,4 @@ def compare_images(template: str, image: str = 'Assets/screenshot.png'):
         marked.save('Assets/screen_marked.png', "PNG")
         print('Potential duplicate was found, marked file saved in Assests/screen_marked.png\n')
     else:
-        print ('No potential duplicates found\n')
+        print('No potential duplicates found\n')

@@ -18,12 +18,12 @@ from Image_comparison import compare_images
 import Image_fetch
 
 def compare_images_loop():
-    '''
+    """
     It checks whether the file inserted is valid, and returns True if
     it is valid, False otherwise
 
     return -- boolean
-    '''
+    """
 
     file_to_check = input('\
             \nPlease insert the absolute path of the image to check. Only\
