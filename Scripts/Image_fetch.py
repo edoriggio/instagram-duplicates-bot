@@ -17,10 +17,6 @@ from time import sleep
 # Selenium modules
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
-# OpenCV module
-import cv2
-# Pillow module
-from PIL import Image
 
 # Selenium driver init
 op = Options()
@@ -39,7 +35,7 @@ json_file = 'Json/credentials.json'
 insta_url = 'https://www.instagram.com/'
 
 # Function for reading and writing data froma a JSON file
-def read_write_to_json(file: str, data: dict = {}, readwrite: str = 'r'):
+def read_write_to_json(file: str, data: dict, readwrite: str = 'r'):
     '''
     Given a file path, some data and a sigle character string, return the
     contents of the given json file. The readwrite string is used to let
@@ -124,7 +120,4 @@ def check_if_registered():
     with open(json_file, 'r') as file_to_read:
         data = json.load(file_to_read)
 
-        if data['username'] == '' or data['password'] == '':
-            return False
-        else:
-            return True
+        return data['username'] == '' or data['password'] == ''

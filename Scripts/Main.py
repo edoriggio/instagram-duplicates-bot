@@ -55,7 +55,7 @@ try:
             break
         else:
             continue
-except:
+except Exception:
     print('\
     \nSomething went wrong, if you have 2FA enabled make sure to uncomment and comment\
     \nthe appropriate lines of code in Scripts/Image_fetch.py')

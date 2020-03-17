@@ -38,11 +38,10 @@ def compare_images(template: str, image: str = 'Assets/screenshot.png'):
     im = cv2.imread(image)
     tmp = cv2.imread(template)
 
-    image_size = im.shape[:2]
     template_size = tmp.shape[:2]
 
     result = cv2.matchTemplate(im, tmp, cv2.TM_SQDIFF)
-    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+    min_val, max_val, min_loc = cv2.minMaxLoc(result)
 
     confidence = (9999999999 - min_val) / 100000000
     altconfidence = 100 - ((min_val / max_val)*100)
@@ -54,7 +53,7 @@ def compare_images(template: str, image: str = 'Assets/screenshot.png'):
 
     print('Comparing the images')
 
-    if (altconfidence > 99) or ((confidence > 97) and (altconfidence > 93)) or ((confidence > 95.7) and (altconfidence > 96.3)):
+    if (altconfidence > 99) or ((confidence > 97) and (altconfidence > 93))\ or ((confidence > 95.7) and (altconfidence > 96.3)):
         marked = Image.open(image)
         draw = ImageDraw.Draw(marked)
         draw.line(((topleftx, toplefty), (topleftx + sizex, toplefty)), fill="red", width=2)
