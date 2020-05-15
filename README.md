@@ -19,7 +19,7 @@ pip3 install opencv-python Pillow Selenium
 ## Installing Selenium driver for Firefox
 1. Go to [this website][1] and look for the driver for your OS.
 2. Go to the directory where the driver was installed to and unzip the archive
-3. Open the Terminal and write (write the path insted of the line of text between the parenteses, and the parenteses too)
+3. Open the Terminal and write (write the path instead of the line of text between the parenteses, and the parenteses too)
 ```
 sudo mv (relative path of the installed driver) /usr/local/bin
 ```
