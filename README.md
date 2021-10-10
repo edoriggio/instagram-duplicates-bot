@@ -1,7 +1,7 @@
 # InstagramDuplicates
 
 ## Short description
-This script logs into a user's Instagram account and checks if, given an image, this is already present in the user's profile page (i.e. the photo is a duplicate).
+This script logs into a user's Instagram account and checks if the given image, is already present in the user's profile page (i.e. the photo is a duplicate).
 
 **Python version - 3.6.9**
 
@@ -38,7 +38,7 @@ driver = webdriver.Firefox(options = op)  #comment it out
 ```
 
 3. The script will then prompt the user to input the absolute path of the image they want to check. This can be done in two ways, either by writing down the absolute path of the file, or by dragging and dropping the desired file into the Terminal window;
-4. An image recognition script will begin to run and it will check if the given image is inside the screenshot that was previously taken. The script will then save a .png in the [Assets][3] folder containing the screenshot taken earlier and a red square if the image was found.
+4. An image recognition script will begin to run and it will check if the given image is inside the screenshot that was previously taken. The script will then save a .png in the [Assets][3] folder containing the screenshot taken earlier and a red square if the image was found. You can check the given example below
 
 ## Example
 
